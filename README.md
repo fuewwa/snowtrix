@@ -124,7 +124,7 @@ Keep in mind that `snowtrix` is a terminal-based particle engine, so some behavi
 * **Terminal Resizing:** Resizing the terminal while the simulation is running can cause small visual artifacts during the redraw.
 * **Mouse Support:** Mouse interaction requires a terminal emulator with mouse tracking support.
 * **Unicode Rendering:** Snowflake shapes may look different depending on the terminal font and Unicode support.
-* **Physics:** The simulation uses lightweight pseudo-physics designed for visual behavior rather than scientific accuracy.
+
 
 ## AI Disclaimer
 
