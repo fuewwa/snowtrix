@@ -1,43 +1,41 @@
-# ❄️ snowtrix
+# snowtrix
 
-Honestly, it is just another terminal screensaver inspired by `cmatrix`, but with snow. It is a lightweight, interactive particle engine built in C99 using `termbox2`.
+Snow falling in your terminal.
 
-This is **not** a serious scientific simulation. The physics are completely faked just to look good enough for a terminal window. It is meant to be a cozy desktop companion for when you want to look busy while watching digital snow fall.
+`snowtrix` is a small interactive particle engine written in C99 with `termbox2`. It brings falling snow, wind, accumulation, and mouse interaction to a terminal window without trying to be a full game or a complex graphics project.
 
----
+The idea is simple: open a terminal, let the snow fall, and play with the simulation when you feel like it.
 
-## ❄️ Features
+## Features
 
-* **Fake Physics:** Snowflakes fall, flutter dynamically, and accumulate at the bottom.
-* **Mouse Interaction:** You can move your mouse to repel snowflakes or click to dig through the snow pile.
-* **Parallax Layers:** Three depth layers (foreground, middle, background) to give a subtle 3D feel.
-* **Party Mode:** A toggleable RGB mode if you get tired of the cozy white snow.
-* **Zero Bloat:** Pure C99, POSIX compatible, and no heavy external assets.
+* **Interactive Snow:** Snowflakes fall with different speeds, movement, and depth layers.
+* **Wind System:** Change the direction and strength of the wind while the simulation is running.
+* **Snow Accumulation:** Let snow build up on the ground and slowly spread across the surface.
+* **Mouse Physics:** Move or click the mouse to push snowflakes around and dig into accumulated snow.
+* **Parallax Layers:** Three particle layers create a simple sense of depth.
+* **Spring Mode:** Melt accumulated snow dynamically while the simulation continues.
+* **Party Mode:** Switch from normal snow colors to animated RGB colors.
+* **Color Presets:** Change the snow theme instantly while the program is running.
+* **Lightweight:** Written in C99 with POSIX support and designed to run directly in the terminal.
 
----
+## Showcase
 
-## 📸 Showcase
-
-| Dynamic Snowfall | Interactive Physics |
-|:----------------:|:-------------------:|
+|          Dynamic Snowfall         |        Interactive Physics        |
+| :-------------------------------: | :-------------------------------: |
 | ![Snowtrix Demo 1](snowtrix1.gif) | ![Snowtrix Demo 2](snowtrix2.gif) |
 
----
-
-## 🧰 Requirements
+## Requirements
 
 * Linux / POSIX system
-* GCC or Clang (C99 support)
+* GCC or Clang with C99 support
 * GNU Make
 * `ncursesw` and `libm`
 
-*Note: `termbox2` is already bundled inside the project.*
+`termbox2` is included directly in the source tree, so there is no separate termbox2 installation step.
 
----
+## Installation
 
-## 🚀 Quick Start
-
-Clone and build:
+Clone the repository and build the program:
 
 ```bash
 git clone https://github.com/opendoto/snowtrix.git
@@ -45,81 +43,93 @@ cd snowtrix
 make
 ```
 
-Run it:
+Run it directly from the project directory:
 
 ```bash
 ./snowtrix
 ```
 
-Other commands:
+To install it system-wide:
 
 ```bash
-sudo make install    # Install system-wide
-sudo make uninstall  # Remove it
-make clean           # Clean build files
+sudo make install
 ```
 
----
+To remove the installed binary:
 
-## ⚙️ Command Line Options
+```bash
+sudo make uninstall
+```
+
+To remove local build files:
+
+```bash
+make clean
+```
+
+## Command Line Options
 
 ```text
--a           Enable snow accumulation on startup.
--p           Start directly in Party Mode 🌈.
--c <RRGGBB>  Set foreground snow color.
--m <RRGGBB>  Set middle layer color.
--f <RRGGBB>  Set background layer color.
--C <theme>   Use a predefined color theme.
--s <speed>   Set initial falling speed.
--w <wind>    Set initial wind force.
--b <flakes>  Set max number of active snowflakes.
--h, --help   Display help message.
+Usage: snowtrix [OPTIONS]
+
+OPTIONS:
+  -a           Enable snow accumulation on startup
+  -p           Start directly in Party Mode
+  -c <RRGGBB>  Set foreground snow color
+  -m <RRGGBB>  Set middle layer color
+  -f <RRGGBB>  Set background layer color
+  -C <theme>   Use a predefined color theme
+  -s <speed>   Set initial falling speed
+  -w <wind>    Set initial wind force
+  -b <flakes>  Set the number of active snowflakes
+  -h, --help   Show help message
 ```
 
----
-
-## ⌨️ Runtime Controls
+## Runtime Controls
 
 ### General
 
-| Key | Action |
-| --- | --- |
-| `q` / `ESC` | Quit |
-| `a` | Toggle snow accumulation |
-| `s` | Toggle Spring Mode (automatic melting) |
-| `p` | Toggle Party Mode |
+| Key         | Action                                 |
+| ----------- | -------------------------------------- |
+| `q` / `ESC` | Quit                                   |
+| `a`         | Toggle snow accumulation               |
+| `s`         | Toggle Spring Mode (automatic melting) |
+| `p`         | Toggle Party Mode                      |
 
 ### Environment
 
-| Key | Action |
-| --- | --- |
+| Key       | Action                     |
+| --------- | -------------------------- |
 | `>` / `.` | Increase wind to the right |
-| `<` / `,` | Increase wind to the left |
-| `w` | Calm the wind |
-| `+` / `=` | Increase falling speed |
-| `-` / `_` | Decrease falling speed |
-| `m` | Add 50 snowflakes |
-| `l` | Remove 50 snowflakes |
+| `<` / `,` | Increase wind to the left  |
+| `w`       | Calm the wind              |
+| `+` / `=` | Increase falling speed     |
+| `-` / `_` | Decrease falling speed     |
+| `m`       | Add 50 snowflakes          |
+| `l`       | Remove 50 snowflakes       |
 
 ### Color Presets
 
-| Key | Color | Key | Color |
-| --- | --- | --- | --- |
-| `!` | Red | `%` | Magenta |
-| `@` | Green | `^` | Cyan |
-| `#` | Yellow | `&` | White |
-| `$` | Blue | `)` | Dark Gray |
+| Key | Color  | Key | Color     |
+| --- | ------ | --- | --------- |
+| `!` | Red    | `%` | Magenta   |
+| `@` | Green  | `^` | Cyan      |
+| `#` | Yellow | `&` | White     |
+| `$` | Blue   | `)` | Dark Gray |
 
----
+## Limitations & Known Issues
 
-## 🤖 AI Assistance Disclosure
+Keep in mind that `snowtrix` is a terminal-based particle engine, so some behavior depends on the terminal emulator being used:
 
-### Ethical Statement
+* **Terminal Resizing:** Resizing the terminal while the simulation is running can cause small visual artifacts during the redraw.
+* **Mouse Support:** Mouse interaction requires a terminal emulator with mouse tracking support.
+* **Unicode Rendering:** Snowflake shapes may look different depending on the terminal font and Unicode support.
+* **Physics:** The simulation uses lightweight pseudo-physics designed for visual behavior rather than scientific accuracy.
 
-This project was developed with the assistance of an Artificial Intelligence (LLM) collaborator. Out of transparency and open-source engineering ethics, I want to explicitly state that while the core concept, feature direction, and debugging verification were driven by a human developer, a significant portion of the code structure, formatting, and performance optimization was generated using AI tools.
+## AI Disclaimer
 
----
+Full disclosure: parts of this codebase were developed with the assistance of an AI tool. I designed the project concept, feature direction, physics behavior, and overall requirements, using AI as a pair programmer to help with implementation, debugging, and code cleanup.
 
-## 📜 License
+## License
 
-This project is released under the MIT License. See the `LICENSE` file for details.
+MIT License. See `LICENSE` for details.
